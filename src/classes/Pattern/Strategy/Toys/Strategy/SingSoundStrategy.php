@@ -1,11 +1,10 @@
 <?php
 
-namespace Pattern\Strategy\Toys;
-
+namespace Pattern\Strategy\Toys\Strategy;
 /**
  * Класс, реализующий способность объекта петь
  * Class SingSoundStrategy
- * @package Pattern\Strategy\Toys
+ * @package Pattern\Strategy\Toys\Strategy
  */
 class SingSoundStrategy implements SoundInterface
 {

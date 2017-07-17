@@ -18,8 +18,8 @@ class AircraftToy extends Toys
         parent::__construct($name);
 
         // издает звук двигателя
-        $this->soundOption = new EngineSoundStrategy();
+        $this->soundOption = new Strategy\EngineSoundStrategy();
         // самолеты летают
-        $this->motionOption = new FlyMotionStrategy();
+        $this->motionOption = new Strategy\FlyMotionStrategy();
     }
 }

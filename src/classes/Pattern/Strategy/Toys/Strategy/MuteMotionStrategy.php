@@ -1,6 +1,6 @@
 <?php
 
-namespace Pattern\Strategy\Toys;
+namespace Pattern\Strategy\Toys\Strategy;
 
 /**
  * Класс, реализующий заглушку для недвигающихся объектов

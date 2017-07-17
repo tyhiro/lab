@@ -18,8 +18,8 @@ class TankToy extends Toys
         parent::__construct($name);
 
         // издает звук двигателя
-        $this->soundOption = new EngineSoundStrategy();
+        $this->soundOption = new Strategy\EngineSoundStrategy();
         // танки ездят
-        $this->motionOption = new RideMotionStrategy();
+        $this->motionOption = new Strategy\RideMotionStrategy();
     }
 }

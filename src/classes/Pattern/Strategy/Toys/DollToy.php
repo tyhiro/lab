@@ -18,8 +18,8 @@ class DollToy extends Toys
         parent::__construct($name);
 
         // кукла плачет
-        $this->soundOption = new CrySoundStrategy();
+        $this->soundOption = new Strategy\CrySoundStrategy();
         // кукла не двигается
-        $this->motionOption = new MuteMotionStrategy();
+        $this->motionOption = new Strategy\MuteMotionStrategy();
     }
 }

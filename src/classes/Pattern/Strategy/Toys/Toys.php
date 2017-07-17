@@ -2,6 +2,9 @@
 
 namespace Pattern\Strategy\Toys;
 
+use Pattern\Strategy\Toys\Strategy\MotionInterface;
+use Pattern\Strategy\Toys\Strategy\SoundInterface;
+
 /**
  * Класс реализующий игрушку с заданными опциями - звук, движение
  * Class Toys

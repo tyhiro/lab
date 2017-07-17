@@ -1,6 +1,6 @@
 <?php
 use \Pattern\Strategy\Toys\TankToy;
-use \Pattern\Strategy\Toys\SingSoundStrategy;
+use \Pattern\Strategy\Toys\Strategy\SingSoundStrategy;
 use \Pattern\Observer\Exchange\ProductItem;
 use \Pattern\Observer\Exchange\ExchangeRate;
 
