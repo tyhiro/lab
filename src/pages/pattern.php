@@ -6,6 +6,9 @@ use Pattern\Observer\WeatherStation\HeatIndexDisplay;
 use Pattern\Observer\WeatherStation\StatisticsDisplay;
 use Pattern\Strategy\Toys\Strategy\SingSoundStrategy;
 use Pattern\Strategy\Toys\TankToy;
+use Pattern\Observer\CatalogFilter\CollectionFilter;
+use Pattern\Observer\CatalogFilter\Novelty;
+use Pattern\Observer\CatalogFilter\Recommend;
 
 /**
  * @var string $pattern ;
@@ -17,6 +20,16 @@ $patterns = [
 
 switch ($pattern) {
     case 'observer':
+        /** @var CollectionFilter $filter */
+        $filter= CollectionFilter::getInstance();
+
+        $novelty = new Novelty($filter);
+        $recommend = new Recommend($filter);
+
+        $filter->setBrand('Chanel');
+        $filter->setCategory('Обувь');
+        $filter->setBrand('Dior');
+
         $weatherData = new WeatherData();
         $currentConditionDisplay = new CurrentConditionsDisplay($weatherData);
         $forecastDisplay = new ForecastDisplay($weatherData);
