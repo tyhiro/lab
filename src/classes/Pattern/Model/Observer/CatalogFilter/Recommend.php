@@ -6,23 +6,11 @@ namespace Pattern\Model\Observer\CatalogFilter;
  * Class Recommend
  * @package Pattern\Observer\CatalogFilter
  */
-class Recommend implements ProductInterface
+class Recommend extends AbstractCollection
 {
-    /** @var array $filterQuery */
-    private $filterQuery = [];
 
     /**
-     * Recommend constructor.
-     * @param FilterInterface $filter
-     */
-    public function __construct(FilterInterface $filter)
-    {
-        $filter->attach($this);
-    }
-
-    /**
-     * Отображает товары
-     * @return mixed
+     * {@inheritdoc}
      */
     public function render()
     {

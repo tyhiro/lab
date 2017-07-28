@@ -12,4 +12,19 @@ interface FilterInterface extends SubjectInterface
      * @return array
      */
     public function getFilterParams();
+
+    /**
+     * @return \SplObjectStorage
+     */
+    public function getObservers();
+
+    /**
+     * @param string $brand
+     */
+    public function setBrand($brand);
+
+    /**
+     * @param string $category
+     */
+    public function setCategory($category);
 }

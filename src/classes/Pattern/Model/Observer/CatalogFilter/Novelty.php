@@ -6,23 +6,11 @@ namespace Pattern\Model\Observer\CatalogFilter;
  * Class Novelty
  * @package Pattern\Observer\CatalogFilter
  */
-class Novelty implements ProductInterface
+class Novelty extends AbstractCollection
 {
-    /** @var array $filterQuery */
-    private $filterQuery = [];
 
     /**
-     * Novelty constructor.
-     * @param FilterInterface $filter
-     */
-    public function __construct(FilterInterface $filter)
-    {
-        $filter->attach($this);
-    }
-
-    /**
-     * Отображает товары
-     * @return mixed
+     * {@inheritdoc}
      */
     public function render()
     {

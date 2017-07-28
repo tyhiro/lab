@@ -8,6 +8,7 @@ namespace Pattern\Model\Observer\CatalogFilter;
 
 abstract class AbstractFilter implements FilterInterface
 {
+
     /** @var \SplObjectStorage $observers */
     protected $observers;
 
@@ -47,4 +48,13 @@ abstract class AbstractFilter implements FilterInterface
             $observer->update($this);
         }
     }
+
+    /**
+     * @return \SplObjectStorage
+     */
+    public function getObservers()
+    {
+        return $this->observers;
+    }
 }
+

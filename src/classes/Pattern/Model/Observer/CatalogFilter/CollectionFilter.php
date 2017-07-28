@@ -8,18 +8,27 @@ namespace Pattern\Model\Observer\CatalogFilter;
  */
 class CollectionFilter extends AbstractFilter
 {
+
     static private $instance = null;
     /** @var  string $brand */
     private $brand;
     /** @var  string $category */
     private $category;
 
+    /**
+     * CollectionFilter constructor.
+     */
     private function __construct()
     {
         $this->observers = new \SplObjectStorage();
     }
 
-    private function __clone()
+    /**
+     * Define __clone as final and private to dissallow cloning.
+     *
+     * @codeCoverageIgnore
+     */
+    final private function __clone()
     {
     }
 
@@ -33,7 +42,7 @@ class CollectionFilter extends AbstractFilter
     }
 
     /**
-     * @param string $brand
+     * {@inheritdoc}
      */
     public function setBrand($brand)
     {
@@ -42,7 +51,7 @@ class CollectionFilter extends AbstractFilter
     }
 
     /**
-     * @param string $category
+     * {@inheritdoc}
      */
     public function setCategory($category)
     {
@@ -56,7 +65,7 @@ class CollectionFilter extends AbstractFilter
     public function getFilterParams()
     {
         return [
-            'brand' => $this->brand,
+            'brand'    => $this->brand,
             'category' => $this->category
         ];
     }
