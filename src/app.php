@@ -50,4 +50,20 @@ $routes->add(
     )
 );
 
+$routes->add(
+    'queue',
+    new Routing\Route(
+        '/queue',
+        [
+            'name'        => 'queue',
+            '_controller' => 'Queue\\Controller\\QueueController::indexAction',
+        ],
+        [],
+        [], // опции
+        '', // хост
+        [], // схемы
+        ['GET'] // методы
+    )
+);
+
 return $routes;

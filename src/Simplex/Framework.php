@@ -15,6 +15,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
  */
 class Framework implements HttpKernelInterface
 {
+
     /** @var UrlMatcherInterface $matcher */
     protected $matcher;
     /** @var ControllerResolverInterface $resolver */
@@ -22,14 +23,18 @@ class Framework implements HttpKernelInterface
     /** @var EventDispatcher $dispatcher */
     protected $dispatcher;
 
+    protected $debug;
+
     public function __construct(
         EventDispatcher $dispatcher,
         UrlMatcherInterface $matcher,
-        ControllerResolverInterface $resolver
+        ControllerResolverInterface $resolver,
+        $debug = false
     ) {
         $this->matcher = $matcher;
         $this->resolver = $resolver;
         $this->dispatcher = $dispatcher;
+        $this->debug = $debug;
     }
 
     public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
@@ -45,6 +50,9 @@ class Framework implements HttpKernelInterface
             $response = new Response('Not Found', 404);
         } catch (\Exception $e) {
             $response = new Response('An error occurred', 500);
+            if ($this->debug) {
+                throw $e;
+            }
         }
 
         // dispatch a response event

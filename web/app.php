@@ -20,7 +20,6 @@ $context = new RequestContext();
 $context->fromRequest($request);
 $matcher = new UrlMatcher($routes, $context);
 $resolver = new ControllerResolver();
-
-$framework = new Simplex\Framework($dispatcher, $matcher, $resolver);
-$framework = new HttpCache($framework, new Store(__DIR__.'/../cache'));
+$framework = new Simplex\Framework($dispatcher, $matcher, $resolver, getenv('DEBUG_MODE'));
+$framework = new HttpCache($framework, new Store(__DIR__ . '/../cache'));
 $framework->handle($request)->send();
