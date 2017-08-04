@@ -1,6 +1,9 @@
 <?php
 namespace Pattern\Controller;
 
+use Pattern\Model\Observer\CatalogFilter\CollectionFilter;
+use Pattern\Model\Observer\CatalogFilter\Novelty;
+use Pattern\Model\Observer\CatalogFilter\Recommend;
 use Pattern\Model\Observer\WeatherStation\CurrentConditionsDisplay;
 use Pattern\Model\Observer\WeatherStation\ForecastDisplay;
 use Pattern\Model\Observer\WeatherStation\HeatIndexDisplay;
@@ -45,20 +48,36 @@ class PatternController
 
     public function observerAction(Request $request)
     {
-        $product1 = new ProductItem();
-        $product2 = new ProductItem();
+        $mode = $request->attributes->get('mode');
+        switch ($mode){
+            case 'weather':
+                $weatherData = new WeatherData();
+                $currentConditionDisplay = new CurrentConditionsDisplay($weatherData);
+                $forecastDisplay = new ForecastDisplay($weatherData);
+                $heatIndexDisplay = new HeatIndexDisplay($weatherData);
+                $statisticsDisplay = new StatisticsDisplay($weatherData);
 
-        ExchangeRate::getInstance()->setExchangeRate(4.5);
+                $weatherData->setMeasurements(80, 65, 30.4);
+                $weatherData->setMeasurements(82, 70, 29.2);
+                $weatherData->setMeasurements(78, 90, 29.2);
+                break;
+            case 'product':
+                $product1 = new ProductItem();
+                $product2 = new ProductItem();
 
-        $weatherData = new WeatherData();
-        $currentConditionDisplay = new CurrentConditionsDisplay($weatherData);
-        $forecastDisplay = new ForecastDisplay($weatherData);
-        $heatIndexDisplay = new HeatIndexDisplay($weatherData);
-        $statisticsDisplay = new StatisticsDisplay($weatherData);
+                ExchangeRate::getInstance()->setExchangeRate(4.5);
+                break;
+            default:
+                /** @var CollectionFilter $filter */
+                $filter= CollectionFilter::getInstance();
+                $novelty = new Novelty($filter);
+                $recommend = new Recommend($filter);
+                $filter->setBrand('Chanel');
+                $filter->setCategory('Обувь');
+                $filter->setBrand('Dior');
+        }
 
-        $weatherData->setMeasurements(80, 65, 30.4);
-        $weatherData->setMeasurements(82, 70, 29.2);
-        $weatherData->setMeasurements(78, 90, 29.2);
+        return new Response('');
     }
 
     public function strategyAction(Request $request)
@@ -69,5 +88,7 @@ class PatternController
         $toy->setSoundOption(new SingSoundStrategy());
         $toy->sound();
         $toy->motion();
+
+        return new Response('');
     }
 }

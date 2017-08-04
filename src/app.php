@@ -7,15 +7,42 @@ $routes = new Routing\RouteCollection();
 $routes->add(
     'pattern',
     new Routing\Route(
-        '/pattern/{pattern}',
+        '/pattern',
         [
             'name'        => 'pattern',
             '_controller' => 'Pattern\\Controller\\PatternController::indexAction',
-            'pattern'     => 'index'
         ],
+        [],
+        [], // опции
+        '', // хост
+        [], // схемы
+        ['GET'] // методы
+    )
+);
+$routes->add(
+    'pattern-observer',
+    new Routing\Route(
+        '/pattern/observer',
         [
-            'pattern' => "(index|observer|strategy)"
+            'name'        => 'pattern-observer',
+            '_controller' => 'Pattern\\Controller\\PatternController::observerAction',
         ],
+        [],
+        [], // опции
+        '', // хост
+        [], // схемы
+        ['GET'] // методы
+    )
+);
+$routes->add(
+    'pattern-strategy',
+    new Routing\Route(
+        '/pattern/strategy',
+        [
+            'name'        => 'pattern-strategy',
+            '_controller' => 'Pattern\\Controller\\PatternController::strategyAction',
+        ],
+        [],
         [], // опции
         '', // хост
         [], // схемы
