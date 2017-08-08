@@ -12,15 +12,6 @@ abstract class AbstractCollection implements ProductInterface
     protected $filterQuery = [];
 
     /**
-     * AbstractCollection constructor.
-     * @param FilterInterface $filter
-     */
-    public function __construct(FilterInterface $filter)
-    {
-        $filter->attach($this);
-    }
-
-    /**
      * {@inheritdoc}
      */
     abstract public function update(FilterInterface $filter);

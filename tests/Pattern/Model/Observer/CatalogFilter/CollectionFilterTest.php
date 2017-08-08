@@ -27,8 +27,11 @@ class CollectionFilterTest extends \PHPUnit_Framework_TestCase
     {
         $filterParams = ['brand' => 'test', 'category' => 'test'];
 
-        $novelty = new Novelty($this->filter);
-        $recommend = new Recommend($this->filter);
+        $novelty = new Novelty();
+        $recommend = new Recommend();
+
+        $this->filter->attach($novelty);
+        $this->filter->attach($recommend);
 
         self::assertEquals(2, $this->filter->getObservers()->count());
         $this->filter->setBrand($filterParams['brand']);

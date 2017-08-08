@@ -70,8 +70,12 @@ class PatternController
             default:
                 /** @var CollectionFilter $filter */
                 $filter= CollectionFilter::getInstance();
-                $novelty = new Novelty($filter);
-                $recommend = new Recommend($filter);
+                $novelty = new Novelty();
+                $recommend = new Recommend();
+
+                $filter->attach($novelty);
+                $filter->attach($recommend);
+
                 $filter->setBrand('Chanel');
                 $filter->setCategory('Обувь');
                 $filter->setBrand('Dior');
