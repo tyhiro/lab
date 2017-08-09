@@ -1,6 +1,10 @@
 <?php
 namespace Pattern\Controller;
 
+use Pattern\Model\Decorator\Starbuzz\Beverage;
+use Pattern\Model\Decorator\Starbuzz\DarkRoast;
+use Pattern\Model\Decorator\Starbuzz\Decorator\Mocha;
+use Pattern\Model\Decorator\Starbuzz\Decorator\Whip;
 use Pattern\Model\Observer\CatalogFilter\CollectionFilter;
 use Pattern\Model\Observer\CatalogFilter\Novelty;
 use Pattern\Model\Observer\CatalogFilter\Recommend;
@@ -36,11 +40,11 @@ class PatternController
 
         $date = date_create_from_format('Y-m-d H:i:s', date('Y-m-d H:i:s'));
         $response->setCache([
-            'public'        => true,
-            'etag'          => 'abcde',
+            'public' => true,
+            'etag' => 'abcde',
             'last_modified' => $date,
-            'max_age'       => 10,
-            's_maxage'      => 10,
+            'max_age' => 10,
+            's_maxage' => 10,
         ]);
 
         return $response;
@@ -49,7 +53,7 @@ class PatternController
     public function observerAction(Request $request)
     {
         $mode = $request->attributes->get('mode');
-        switch ($mode){
+        switch ($mode) {
             case 'weather':
                 $weatherData = new WeatherData();
                 $currentConditionDisplay = new CurrentConditionsDisplay($weatherData);
@@ -69,7 +73,7 @@ class PatternController
                 break;
             default:
                 /** @var CollectionFilter $filter */
-                $filter= CollectionFilter::getInstance();
+                $filter = CollectionFilter::getInstance();
                 $novelty = new Novelty();
                 $recommend = new Recommend();
 
@@ -94,5 +98,18 @@ class PatternController
         $toy->motion();
 
         return new Response('');
+    }
+
+    public function decoratorAction(Request $request)
+    {
+        $beverageWhip = new Whip((new DarkRoast())->setSize(Beverage::GRANDE));
+        var_dump($beverageWhip->getSize());
+        $beverageMochaWhip = new Mocha(new Whip(new DarkRoast()));
+        $html = <<<HTML
+{$beverageWhip->getDescription()} ............{$beverageWhip->cost()}<br>
+{$beverageMochaWhip->getDescription()} ............{$beverageMochaWhip->cost()}
+HTML;
+
+        return new Response($html);
     }
 }

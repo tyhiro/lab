@@ -66,4 +66,19 @@ $routes->add(
     )
 );
 
+$routes->add(
+    'pattern-decorator',
+    new Routing\Route(
+        '/pattern/decorator',
+        [
+            'name' => 'pattern-decorator',
+            '_controller' => 'Pattern\\Controller\\PatternController::decoratorAction',
+        ],
+        [],
+        [], // опции
+        '', // хост
+        [], // схемы
+        ['GET'] // методы
+    )
+);
 return $routes;
