@@ -81,4 +81,21 @@ $routes->add(
         ['GET'] // методы
     )
 );
+
+$routes->add(
+    'other',
+    new Routing\Route(
+        '/other',
+        [
+            'name'        => 'other',
+            '_controller' => 'Other\\Controller\\OtherController::indexAction',
+        ],
+        [],
+        [], // опции
+        '', // хост
+        [], // схемы
+        ['GET'] // методы
+    )
+);
+
 return $routes;
