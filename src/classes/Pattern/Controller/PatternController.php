@@ -1,6 +1,11 @@
 <?php
 namespace Pattern\Controller;
 
+use Pattern\Model\Decorator\Formatter\Decorator\OneLine;
+use Pattern\Model\Decorator\Formatter\Decorator\OneSpace;
+use Pattern\Model\Decorator\Formatter\Decorator\StripTags;
+use Pattern\Model\Decorator\Formatter\Decorator\Translit;
+use Pattern\Model\Decorator\Formatter\StringFormatter;
 use Pattern\Model\Decorator\Starbuzz\Beverage;
 use Pattern\Model\Decorator\Starbuzz\DarkRoast;
 use Pattern\Model\Decorator\Starbuzz\Decorator\Mocha;
@@ -102,13 +107,31 @@ class PatternController
 
     public function decoratorAction(Request $request)
     {
-        $beverageWhip = new Whip((new DarkRoast())->setSize(Beverage::GRANDE));
-        var_dump($beverageWhip->getSize());
-        $beverageMochaWhip = new Mocha(new Whip(new DarkRoast()));
-        $html = <<<HTML
+        $mode = $request->attributes->get('mode');
+        $html = '';
+        switch ($mode) {
+            case 'cofee':
+                $beverageWhip = new Whip((new DarkRoast())->setSize(Beverage::GRANDE));
+                var_dump($beverageWhip->getSize());
+                $beverageMochaWhip = new Mocha(new Whip(new DarkRoast()));
+                $html = <<<HTML
 {$beverageWhip->getDescription()} ............{$beverageWhip->cost()}<br>
 {$beverageMochaWhip->getDescription()} ............{$beverageMochaWhip->cost()}
 HTML;
+                break;
+            default:
+                $string = <<<STRING
+Каждый     охотник <br> 
+<span> желает </span>  <?=знать?> 
+где <?php сидит 'php' ?> фазан
+STRING;
+                $formatString = new Translit(new OneSpace(new OneLine(new StripTags((new StringFormatter($string))))));
+                $html = $formatString->format();
+                echo "<pre>";
+                echo (new Translit(new OneSpace(new OneLine(new StripTags((new StringFormatter($string)))))))->format();
+                echo "</pre>";
+        }
+
 
         return new Response($html);
     }
