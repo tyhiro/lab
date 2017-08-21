@@ -9,6 +9,7 @@ return array (
       'Router' => 'Zend\\Router\\RouteStackInterface',
       'RoutePluginManager' => 'Zend\\Router\\RoutePluginManager',
       'ValidatorManager' => 'Zend\\Validator\\ValidatorPluginManager',
+      'PizzaService' => 'Pattern\\Service\\PizzaService',
     ),
     'factories' => 
     array (
@@ -16,6 +17,7 @@ return array (
       'Zend\\Router\\RoutePluginManager' => 'Zend\\Router\\RoutePluginManagerFactory',
       'Zend\\Router\\RouteStackInterface' => 'Zend\\Router\\RouterFactory',
       'Zend\\Validator\\ValidatorPluginManager' => 'Zend\\Validator\\ValidatorPluginManagerFactory',
+      'Pattern\\Service\\PizzaService' => 'Zend\\ServiceManager\\Factory\\InvokableFactory',
     ),
   ),
   'route_manager' => 
@@ -56,7 +58,7 @@ return array (
         'type' => 'Zend\\Router\\Http\\Segment',
         'options' => 
         array (
-          'route' => '/pattern[/:action][/:fr]',
+          'route' => '/pattern[/:action]',
           'constraints' => 
           array (
             'pattern' => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -75,7 +77,7 @@ return array (
     'factories' => 
     array (
       'Application\\Controller\\IndexController' => 'Zend\\ServiceManager\\Factory\\InvokableFactory',
-      'Pattern\\Controller\\PatternController' => 'Zend\\ServiceManager\\Factory\\InvokableFactory',
+      'Pattern\\Controller\\PatternController' => 'Pattern\\Factory\\PatternControllerFactory',
     ),
   ),
   'view_manager' => 

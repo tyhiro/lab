@@ -2,6 +2,8 @@
 
 namespace Pattern\Controller;
 
+use Pattern\Service\PizzaServiceInterface;
+use Pattern\Service\PizzaStore\NYPizzaStore;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -11,6 +13,14 @@ use Zend\View\Model\ViewModel;
  */
 class PatternController extends AbstractActionController
 {
+    /** @var  PizzaServiceInterface $pizzaService */
+    protected $pizzaService;
+
+    public function __construct(PizzaServiceInterface $pizzaService)
+    {
+        $this->pizzaService = $pizzaService;
+    }
+
     /**
      * @return ViewModel
      */
@@ -21,6 +31,7 @@ class PatternController extends AbstractActionController
 
     public function factoryAction()
     {
-        return new ViewModel(['factory' => 'factory']);
+        $pizza = $this->pizzaService->orderPizza(new NYPizzaStore(), 'veggie');
+        return new ViewModel(['pizza' => $pizza]);
     }
 }

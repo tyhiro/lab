@@ -1,1 +1,13 @@
-<?= $factory?>
+<?php
+/**
+ * @var \Pattern\Model\PizzaInterface $pizza
+ */
+?>
+<h2>Ordered: <?= $pizza ? $pizza->getName() : '' ?></h2>
+<table class="table">
+    <?php foreach ($pizza->getTraceProcess() as $process) { ?>
+        <tr>
+            <td><?= $process ?></td>
+        </tr>
+    <?php } ?>
+</table>
