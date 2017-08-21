@@ -25,7 +25,7 @@ use \Pattern\Model\Observer\Exchange\ExchangeRate;
  * Class PatternController
  * @package Pattern\Controller
  */
-class PatternController
+class PatternOldController
 {
 
     public function indexAction(Request $request)
