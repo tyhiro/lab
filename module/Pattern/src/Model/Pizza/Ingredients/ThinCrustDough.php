@@ -1,5 +1,5 @@
 <?php
-namespace Pattern\Model\Ingredients;
+namespace Pattern\Model\Pizza\Ingredients;
 
 
 class ThinCrustDough extends Ingredient

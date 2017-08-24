@@ -1,8 +1,8 @@
 <?php
-namespace Pattern\Model;
+namespace Pattern\Model\Pizza;
 
-use Pattern\Model\Ingredients\IngredientInterface;
-use Pattern\Model\Ingredients\PizzaIngredientFactoryInterface;
+use Pattern\Model\Pizza\Ingredients\IngredientInterface;
+use Pattern\Model\Pizza\Ingredients\PizzaIngredientFactoryInterface;
 
 /**
  * Class Pizza

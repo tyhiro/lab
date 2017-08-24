@@ -1,5 +1,5 @@
 <?php
-namespace Pattern\Model;
+namespace Pattern\Model\Pizza;
 
 /**
  * Class VeggiePizza

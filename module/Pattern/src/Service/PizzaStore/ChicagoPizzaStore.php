@@ -1,10 +1,10 @@
 <?php
 namespace Pattern\Service\PizzaStore;
 
-use Pattern\Model\CheesePizza;
-use Pattern\Model\Ingredients\ChicagoPizzaIngredientFactory;
-use Pattern\Model\PepperoniPizza;
-use Pattern\Model\VeggiePizza;
+use Pattern\Model\Pizza\CheesePizza;
+use Pattern\Model\Pizza\Ingredients\ChicagoPizzaIngredientFactory;
+use Pattern\Model\Pizza\PepperoniPizza;
+use Pattern\Model\Pizza\VeggiePizza;
 
 /**
  * Class ChicagoPizzaStore
