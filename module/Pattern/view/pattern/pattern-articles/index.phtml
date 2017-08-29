@@ -1,0 +1,28 @@
+<h1>Articles</h1>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>News</th>
+        <td>
+            <a href="<?= $this->url('articles', ['action' => 'news',], ['query' => ['fr' => 'zend']]); ?>">
+                view page
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <th>Blog</th>
+        <td>
+            <a href="<?= $this->url('articles', ['action' => 'blog',], ['query' => ['fr' => 'zend']]); ?>">
+                view page
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <th>Science articles</th>
+        <td>
+            <a href="<?= $this->url('articles', ['action' => 'science',], ['query' => ['fr' => 'zend']]); ?>">
+                view page
+            </a>
+        </td>
+    </tr>
+</table>

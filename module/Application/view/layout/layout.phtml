@@ -1,3 +1,7 @@
+<?php
+/** @var \Zend\Mvc\Plugin\FlashMessenger\FlashMessenger $flashMessenger */
+$flashMessenger = $this->flashMessenger();
+?>
 <?= $this->doctype() ?>
 
 <html lang="en">
@@ -44,6 +48,13 @@
     </div>
 </nav>
 <div class="container">
+    <?php if ($flashMessenger->hasErrorMessages()) { ?>
+        <div class="alert alert-danger">
+            <?php foreach ($flashMessenger->getErrorMessages() as $message) { ?>
+                <p><?= $message ?></p>
+            <?php } ?>
+        </div>
+    <?php } ?>
     <?= $this->content ?>
     <hr>
     <footer>
