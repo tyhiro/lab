@@ -11,7 +11,7 @@ use Zend\View\Model\ViewModel;
  * Class PatternController
  * @package Pattern\Controller
  */
-class PatternController extends AbstractActionController
+class PatternDefaultController extends AbstractActionController
 {
     /** @var  PizzaServiceInterface $pizzaService */
     protected $pizzaService;

@@ -12,6 +12,7 @@
 return [
     'Zend\Router',
     'Zend\Validator',
+    'Zend\Mvc\Plugin\FlashMessenger',
     'Application',
     'Pattern',
 ];

@@ -1,0 +1,28 @@
+<?php
+/**
+ * @var string $title ;
+ * @var \Zend\Db\ResultSet\HydratingResultSet|\Pattern\Model\Articles\Article[] $articles
+ */
+?>
+<h1><?= $title ?></h1>
+<p><a href="<?= $this->url('articles', ['action' => 'index',], ['query' => ['fr' => 'zend']]); ?>"><-back</a></p>
+<div class="row">
+    <?php if ($articles) { ?>
+        <?php foreach ($articles as $article) { ?>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><?= $article->getName() ?></h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <?= $article->getText() ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
+</div>
+
+<p><a href="<?= $this->url('articles', ['action' => 'index',], ['query' => ['fr' => 'zend']]); ?>"><-back</a></p>

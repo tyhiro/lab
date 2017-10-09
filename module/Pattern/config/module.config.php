@@ -1,7 +1,8 @@
 <?php
 namespace Pattern;
 
-use Pattern\Controller\PatternController;
+use Pattern\Factory\PatternConrollerAbstractFactory;
+use Pattern\Service\ArticleService;
 use Pattern\Service\PizzaService;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -17,17 +18,34 @@ return [
                         'pattern' => '[a-zA-Z][a-zA-Z0-9_-]*'
                     ],
                     'defaults' => [
-                        'controller' => PatternController::class,
+                        'controller' => 'Pattern\Controller\Default',
                         'action' => 'index',
                     ],
                 ],
             ],
+            'articles' => [
+                'type' => 'segment',
+                'options' => [
+                    'route' => '/articles[/:action]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'page' => '[0-9]+',
+                        'orderby' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'orderdir' => 'asc|desc',
+                    ],
+                    'defaults' => [
+                        'controller' => 'Pattern\Controller\Articles',
+                        'action' => 'index',
+                        'page' => 1,
+                    ],
+                ]
+            ],
         ],
     ],
     'controllers' => [
-        'factories' => [
-            PatternController::class => Factory\PatternControllerFactory::class,
-        ],
+        'abstract_factories'=>[
+            PatternConrollerAbstractFactory::class
+        ]
     ],
     'service_manager' => [
         'aliases' => [
@@ -35,7 +53,9 @@ return [
         ],
         'factories' => [
             PizzaService::class => InvokableFactory::class,
+            ArticleService::class => InvokableFactory::class,
         ],
+
     ],
 
     'view_manager' => [
