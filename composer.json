@@ -33,7 +33,8 @@
     },
     "psr-4": {
       "Application\\": "module/Application/src/",
-      "Pattern\\": "module/Pattern/src/"
+      "Pattern\\": "module/Pattern/src/",
+      "Algorithm\\": "module/Algorithm/src/"
     }
   }
 }
