@@ -15,4 +15,5 @@ return [
     'Zend\Mvc\Plugin\FlashMessenger',
     'Application',
     'Pattern',
+    'Algorithm',
 ];
